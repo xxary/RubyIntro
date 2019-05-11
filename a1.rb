@@ -14,11 +14,12 @@ p full_name["Jordan"]
 
 #Lamda
 
-first_name = lamda{|first,last|first+""+last}
-p furst_name["acx","des"]
+first_name = lambda{|first,last|first+""+last}
+p first_name["acx","des"]
 
 first_name = ->(first,last){first+""+last}
-p furst_name["acx","des"]
+p first_name["acx","des"]
+
 
 #different Proc Lamda
 
@@ -28,11 +29,15 @@ def my_method
 	p "ABC"
 end
 
+my_method
+
 def my_method
 	x = Proc.new{return}
 	x.call
 	p "ABC"
 end
+
+my_method
 
 #Method argument
 
@@ -50,17 +55,18 @@ end
 
 print_adrress city: "Scottable",state:"AZ",zip:24345
 
-def sms_genereater api_key,num,msg,locale
+def sms_generator api_key,num,msg,locale
 end
 
 sms_generator 555555,'98735how','hey there','US'
 
 def stream_movie title:, lang:
 	puts title
-	puts lang
+	puts langhttps://wandbox.org/compile
 end
 
-stream_movie title:"The Fountainhaid",lang;"ENG"
+stream_movie title:"The Fountainhaid",lang:"ENG"
+
 
 #splat keyword
 def roster *players
@@ -72,10 +78,10 @@ roster 'Altuve','Gattis','Spinger','George'
 
 def roster **players_with_positions
 	players_with_positions.each do |player,position|
-	puts "Player:#{player}"
-	puts "position:#{position}"
+	puts "Player: #{player}"
+	puts "position: #{position}"
 	puts "\n"
-	emd
+    end
 end
 
 data = {
@@ -94,8 +100,7 @@ def invoice options={}
 	puts options[:somthing_else]
 end
 
-invoice company:"Google",total:100.0,something_else:"asdf"
-
+invoice company:"Google",total:100.0,somthing_else:"asdf"
 
 #While loop
 i = 0
@@ -158,9 +163,9 @@ Hash[[1,2.1,3.33,0.9].map{|x| [x.to_i,x]}]
 
 Hash[%w(A djhtroe no rktrl srtrst rtsrs).map{|x| [x,x.length]}]
 
-{:a=>"foo",:b=>"bar"}.map{|a,b| "#{a}="#{b}"}.join('&')
+{:a=>"foo",:b=>"bar"}.map{|a,b| "#{a}=#{b}"}.join('&')
 
-{:a=>"foo",:b=>"bar",:lat=>"120.343,:long=>"33.212"}.map{|a,b| "#{a}="#{b}"}.join('&')
+{:a=>"foo",:b=>"bar",:lat=>"120.343",:long=>"33.212"}.map{|a,b| "#{a}=#{b}"}.join('&')
 
 #inject
 
@@ -176,11 +181,10 @@ puts total
 
 [3,2,4,53,3,3343,5343,12,3].inject(&:*)
 
-
 #Ruby collection
 x = [12,3,142,545,45]
 
-x
+puts x
 
 y=Array.new
 
@@ -196,13 +200,11 @@ y.each do |i|
 	puts i
 end
 
-
 #deleting item array
 
 batting_average = [0.300,0.180,0.200,0.250]
 
 batting_average.delete_if{|average| average<0.24}
-
 
 #join methods
 teams =["astros","yuankees","ragers","mets","cardinals"]
@@ -215,7 +217,6 @@ teams.join('&')
 
 teams.join('z')
 
-
 #push pop
 teams =["astros","yuankees","ragers","mets","cardinals"]
 
@@ -226,7 +227,6 @@ teams.push("aaa","bbb")
 teams.pop
 
 z=teams.pop
-
 
 
 #Hash ruby
@@ -267,7 +267,6 @@ people.keys
 people.values
 
 
-
 #Ruby conditiohn
 
 players=["correa","carter","altuve"]
@@ -277,7 +276,6 @@ unless players.empty?
 end
 	
 players.each{|player| puts player} unless players.empty?
-
 
 
 #OOP
@@ -298,7 +296,7 @@ api.test_method
 class ApiConnector
 	attr_accessor :title,:description,:url
 	
-	def initialize(title:title,description:description,url:url)
+	def initialize(title,description,url)
 		@title = title
 		@description = description
 		@url = url
@@ -311,33 +309,7 @@ class ApiConnector
 	end
 end
 
-api = ApiConnector.new(title:"My Title",description:"My cool description",url:"google.com")
+api = ApiConnector.new("My Title","My cool description","google.com")
 api.testing_initializers
 
 
-
-
-
-------------------------------------------------------------------
-class ApiConnector
-	attr_accessor :title,:description,:url
-	
-	def initialize(title:title,description:description,url:url)
-		@title = title
-		@description = description
-		@url = url
-	end
-	
-	def testing_initializers
-		puts @title
-		puts @description
-		puts @url
-	end
-end
-
-class SmsConnector<ApiConnector
-
-
-api = SmsConnector.ApiConnector.new(title:"My Title",description:"My cool description",url:"google.com")
-api.testing_initializers
-----------------------------------------------------------------------------------
